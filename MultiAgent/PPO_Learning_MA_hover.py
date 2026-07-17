@@ -107,7 +107,7 @@ if __name__ == '__main__':
         gae_lambda=gae_lambda, gamma=gamma, 
         value_loss_scale=value_loss_scale, entropy_loss_scale=entropy_loss_scale,
         alpha_actor=alpha_actor, alpha_critic=alpha_critic, 
-        actor_fc1_dims=1024, actor_fc2_dims=512, actor_fc3_dims=256, actor_fc4_dims=128,
+        actor_fc1_dims=512, actor_fc2_dims=256, actor_fc3_dims=128, actor_fc4_dims=64,
         critic_fc1_dims=1024, critic_fc2_dims=512, critic_fc3_dims=256, critic_fc4_dims=128,
         batch_size=batch_size, N=rollout, n_epochs=n_epochs, 
         checkpoint_dir=checkpoint_path

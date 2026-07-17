@@ -2,7 +2,111 @@
 
 Implementation of single-agent and multi-agent reinforcement learning for UAV payload collaboration using PyBullet drone simulations and Proximal Policy Optimization (PPO).
 
-The project combines custom PyBullet environments, UAV control methods, and PPO-based algorithms for payload transportation and collaboration tasks.
+---
+
+# Installation
+
+Tested with:
+
+```text
+Python 3.11.9
+```
+
+## 1. Install dependencies
+
+Create and activate a virtual environment, then install the required packages:
+
+```bash
+pip install -r requirements.txt
+```
+
+## 2. Install the PyBullet simulator
+
+Navigate to the simulator folder:
+
+```bash
+cd gym-pybullet-drones
+```
+
+Install the package in editable mode:
+
+```bash
+pip install -e .
+```
+
+---
+
+# Running Experiments
+
+## Single-Agent Training
+
+```bash
+python SingleAgent/PPO_Learning_SA_hover.py
+```
+
+## Multi-Agent Training
+
+```bash
+python MultiAgent/PPO_Learning_MA_hover.py
+```
+
+---
+
+# Testing
+
+The trained policies can be evaluated using the provided testing scripts. Two versions are available depending on the training approach: single-agent PPO and multi-agent PPO (MAPPO).
+
+## Single-Agent PPO
+
+Run:
+
+```bash
+python SingleAgent/PPO_Testing_SA_hover.py
+```
+
+## Multi-Agent PPO (MAPPO)
+
+Run:
+
+```bash
+python MultiAgent/PPO_Testing_MA_hover.py
+```
+
+## Checkpoint Files
+
+The testing scripts automatically load trained checkpoints from the following directories:
+
+```
+SingleAgent/sa_ppo/
+```
+
+for single-agent PPO, and:
+
+```
+MultiAgent/ma_ppo/
+```
+
+for MAPPO.
+
+Each checkpoint consists of the following files:
+
+```
+actor_torch_ppo
+critic_torch_ppo
+scaler_torch_ppo.pkl
+```
+
+The repository includes default trained weights that can be directly tested.
+
+To evaluate a different trained model, replace the existing checkpoint files with the desired weights. The new files must be renamed as:
+
+```
+actor_torch_ppo
+critic_torch_ppo
+scaler_torch_ppo.pkl
+```
+
+Before testing, ensure that the actor network architecture defined in the testing script matches the architecture used during training. If a different network size was used, update the network dimensions accordingly before loading the checkpoint.
 
 ---
 
@@ -138,91 +242,5 @@ Available scripts:
 
 - `find_rope_parameter.py`  
   Rope parameter tuning utility.
-
----
-
-# Installation
-
-Tested with:
-
-```text
-Python 3.11.9
-```
-
-## 1. Install dependencies
-
-Create and activate a virtual environment, then install the required packages:
-
-```bash
-pip install -r requirements.txt
-```
-
-## 2. Install the PyBullet simulator
-
-Navigate to the simulator folder:
-
-```bash
-cd gym-pybullet-drones
-```
-
-Install the package in editable mode:
-
-```bash
-pip install -e .
-```
-
----
-
-# Running Experiments
-
-## Single-Agent Training
-
-```bash
-python SingleAgent/PPO_Learning_SA_hover.py
-```
-
-## Multi-Agent Training
-
-```bash
-python MultiAgent/PPO_Learning_MA_hover.py
-```
-
----
-
-# Testing
-
-## Single-Agent
-
-```bash
-python SingleAgent/PPO_Testing_SA_hover.py
-```
-
-## Multi-Agent
-
-```bash
-python MultiAgent/PPO_Testing_MA_hover.py
-```
-
-Testing scripts load trained checkpoints from:
-
-```text
-SingleAgent/sa_ppo/
-```
-
-or:
-
-```text
-MultiAgent/ma_ppo/
-```
-
-The required checkpoint files are:
-
-```text
-actor_torch_ppo
-critic_torch_ppo
-scaler_torch_ppo.pkl
-```
-
-To successfully load a checkpoint, ensure that the PPO network architecture matches the architecture used during training, including input/output dimensions and hidden layer sizes.
 
 ---
